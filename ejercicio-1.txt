@@ -1,0 +1,60 @@
+Ejercicio de React - Componente de Player
+Descripción:
+Desarrolla un componente de React llamado Player que permita a un usuario ingresar su nombre de 
+jugador y luego establecerlo. El componente debe mostrar un mensaje de bienvenida personalizado con el 
+nombre ingresado.
+
+Requerimientos:
+El componente debe utilizar React y la función useState.
+Debe incluir un campo de entrada de texto donde el usuario pueda ingresar su nombre.
+Debe tener un botón que, al hacer clic, establezca el nombre ingresado y muestre un mensaje de bienvenida con ese
+ nombre.
+El mensaje de bienvenida debe mostrar "Welcome unknown entity" si el usuario aún no ha establecido su nombre.
+El mensaje de bienvenida debe mostrar "Welcome [nombre]" si el usuario ha establecido su nombre.
+El componente debe estar encapsulado en una etiqueta <section> con un id de "player".
+Consideraciones adicionales:
+Asegúrate de manejar correctamente los cambios en el estado del componente al ingresar y establecer el nombre del 
+jugador.
+La interfaz de usuario debe ser intuitiva y fácil de usar.
+Notas:
+Puedes utilizar el código proporcionado como referencia, pero asegúrate de entenderlo completamente antes de realizar
+ modificaciones.
+No es necesario agregar estilos CSS para este ejercicio, el enfoque principal debe estar en la lógica y funcionalidad
+ del componente.
+Entrega:
+Por favor, proporciona el código completo del componente Player y cualquier otra parte del código necesario para su 
+funcionamiento. Además, incluye un breve comentario explicativo de tu enfoque o cualquier decisión de diseño 
+importante que hayas tomado.
+
+import React, { useState } from "react";
+
+const Player = () => {
+  // enteredPlayerName para almacenar el nombre del jugador ingresado
+  const [enteredPlayerName, setEnteredPlayerName] = useState('');
+  //submitted para rastrear si se ha enviado el nombre del jugador.
+  const [submitted, setSubmitted] = useState(false);
+
+  // handleChange se activa cada vez que el usuario escribe en el campo de entrada de texto. Actualiza el estado 
+  //enteredPlayerName con el valor actual del campo de entrada.
+  function handleChange(event) {
+    setEnteredPlayerName(event.target.value);
+  }
+//handleClick es una función que se activa cuando el usuario hace clic en el botón "Set Name". 
+//Establece el estado submitted en true
+  function handleClick(){
+    setSubmitted(true)
+  }
+
+
+  return (
+    <section id="player">
+      <h2>Welcome {submitted ? enteredPlayerName : 'unknown entity'}</h2>
+      <p>
+        <input type="text" onChange={handleChange} value={enteredPlayerName} />
+        <button  onClick={handleClick}>Set Name</button>
+      </p>
+    </section>
+  );
+};
+
+export default Player;

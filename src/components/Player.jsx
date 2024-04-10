@@ -9,6 +9,7 @@ const Player = () => {
   // handleChange se activa cada vez que el usuario escribe en el campo de entrada de texto. Actualiza el estado 
   //enteredPlayerName con el valor actual del campo de entrada.
   function handleChange(event) {
+    setSubmitted(false)
     setEnteredPlayerName(event.target.value);
   }
 //handleClick es una función que se activa cuando el usuario hace clic en el botón "Set Name". 
