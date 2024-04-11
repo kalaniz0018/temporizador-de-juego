@@ -69,3 +69,24 @@ const Player = () => {
 };
 
 export default Player;
+
+STATE:
+
+1- los valores de estado hacen que un componenete se vuelva a ejecutar cuando se cambian a travez de esa funcion
+de actualizacion de estado. 
+(Causes componenr re-evaluation when changed)
+
+2- estado debe utilziarse siempre que tenga valores que deban reflejarse directamente en la interfaz de usuario (UI)
+(Should be used for values that are directly reflected in the UI)
+
+3- No se debe utilizar el estado para los valores que solo se utilizan detras de las escenas y no tienen 
+impacto directo eb la interfaz del usuario 
+(Should not be used for 'behind the escenes' values that have no direct UI impact)
+
+REF: 
+1- éstos no hacen que un componente se vuelva a ejecutar, el componenete no se reevaluara solo porque solo
+porque el valor de referencia haya cambiado 
+(Do not cause component re-evaluation when changed)
+
+2- pero se puede usar refs para obtener accedo directo a los elementos del DOM
+(Can be used to again direct DOM element access (-> great for reading values or accessing certain browser APIs))
