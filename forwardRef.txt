@@ -1,0 +1,80 @@
+El uso de forwardRef en React es necesario cuando necesitas pasar una referencia a un 
+componente hijo a través de un componente de orden superior, como en tu caso, donde ResultModal 
+es el componente hijo y TimerChallenge es el componente padre.
+
+Cuando pasas una referencia directamente a un componente hijo utilizando ref, React lo trata como una 
+propiedad común y no como una referencia especial. Esto significa que cuando intentas acceder a los métodos
+ o propiedades del elemento referenciado dentro del componente hijo, es posible que encuentres problemas, 
+ especialmente si el componente hijo es un componente de función.
+
+Para evitar este problema, React proporciona forwardRef, que te permite pasar la referencia a través de 
+los componentes intermedios directamente al componente final donde se necesita. Esto asegura que la referencia 
+sea tratada correctamente como una referencia especial, permitiéndote acceder a los métodos y propiedades del 
+elemento referenciado dentro del componente hijo.
+
+En tu caso, ResultModal es un componente de función, por lo que necesitas utilizar forwardRef para asegurarte 
+de que la referencia pasada a él se maneje correctamente como una referencia especial. De esta manera, puedes 
+acceder al método showModal del diálogo dentro de ResultModal correctamente, lo que te permite mostrar el modal 
+cuando el temporizador expire en TimerChallenge.
+
+COMPONENTES: 
+---------------TimerChallenge---------------------
+const TimerChallenge = ({ title, targetTime }) => {
+  const [timerExpired, setTimerExpired] = useState(false);
+  const [timerStarted, setTimerStarted] = useState(false);
+  const timer = useRef();
+  const dialog = useRef();
+  function handleStart() {
+    timer.current = setTimeout(() => {
+      setTimerExpired(true);
+      dialog.current.showModal();
+    }, targetTime * 1000);
+    setTimerStarted(true);
+  }
+
+  function handleStop() {
+    clearTimeout(timer.current);
+  }
+
+  return (
+    <>
+      <ResultModal ref={dialog} targetTime={targetTime} result="Lost" />
+
+      <section className="challenge">
+        <h2>{title}</h2>
+
+        <p className="challenge-time">
+          {targetTime} second{targetTime > 1 ? "s" : ""}
+        </p>
+        <p>
+          <button onClick={timerStarted ? handleStop : handleStart}>
+            {timerStarted ? "Stop" : "Start"}
+            Challenge
+          </button>
+        </p>
+        <p className={timerStarted ? "active" : undefined}>
+          {timerStarted ? " Time is runnings..." : "Timer inactive"}
+        </p>
+      </section>
+    </>
+  );
+};
+
+-------------------ResultModal-------------------------------
+
+const ResultModal = forwardRef(({ result, targetTime }, ref) => {
+  return (
+    <dialog ref={ref} className="result-modal">
+      <h2>You {result}</h2>
+      <p>
+        The target time was <strong> {targetTime} seconds</strong>
+      </p>
+      <p>
+        You stopped the timer with <strong>X seconds left</strong>{" "}
+      </p>
+      <form method="dialog">
+        <button>Close</button>
+      </form>
+    </dialog>
+  );
+});
