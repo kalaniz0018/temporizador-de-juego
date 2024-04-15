@@ -1,0 +1,18 @@
+En esta seccion se aprendio sobrelas referencias y el paso de datos entre componentes, etc
+refs & portals
+advanced DOM access & value managment
+
+-accessing DOM ELEMENTS with refs-
+-managing values with refs
+-exposing API functions from componentes
+-detaching DOM rendering from JSX structure with portals
+
+createPortal es una función de React que te permite renderizar un componente en un lugar específico del DOM, fuera de la jerarquía de componentes de React.
+ Esto significa que puedes controlar dónde aparece el contenido de tu componente en la página web, en lugar de depender de su ubicación en el árbol de componentes de React.
+
+Por ejemplo, si tienes un modal que deseas mostrar en la parte superior de la página sin afectar la estructura de tus otros componentes, puedes usar createPortal para 
+renderizar ese modal en un contenedor específico del DOM, como un elemento con un id único. Esto te permite mantener una separación clara entre la lógica de tu componente y 
+su presentación en la página web.
+
+En resumen, createPortal te da más flexibilidad para controlar la ubicación de tu contenido en el DOM, lo que puede ser útil para crear componentes reutilizables y mantener 
+una estructura de código más limpia y organizada.
