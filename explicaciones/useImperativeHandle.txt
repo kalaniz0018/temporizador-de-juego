@@ -1,35 +1,37 @@
 Explicacion de forma didactica 
 
-Claro, el useImperativeHandle es como un conducto que permite que un componente hijo exponga ciertas funciones o métodos al componente padre. En términos más sencillos, 
-es como abrir una ventana desde un cuarto cerrado para que alguien afuera pueda pasar cosas adentro o sacarlas.
+Claro, el useImperativeHandle es como un conducto que permite que un componente hijo exponga ciertas funciones o métodos al componente padre. 
+En términos más sencillos, es como abrir una ventana desde un cuarto cerrado para que alguien afuera pueda pasar cosas adentro o sacarlas.
 
-En tu código, ResultModal es el componente hijo y TimerChallenge es el componente padre. Quieres que ResultModal pueda abrir su diálogo desde afuera cuando el temporizador 
-expire en TimerChallenge. Para hacer esto, utilizamos useImperativeHandle.
+En tu código, ResultModal es el componente hijo y TimerChallenge es el componente padre. Quieres que ResultModal pueda abrir su diálogo desde 
+afuera cuando el temporizador expire en TimerChallenge. Para hacer esto, utilizamos useImperativeHandle.
 
-En ResultModal, creamos una referencia usando useRef para acceder al diálogo. Luego, con useImperativeHandle, decimos "Hey, si alguien nos está mirando desde afuera, 
-aquí está una función llamada open() que pueden usar para abrir el diálogo".
+En ResultModal, creamos una referencia usando useRef para acceder al diálogo. Luego, con useImperativeHandle, decimos "Hey, si alguien nos 
+está mirando desde afuera, aquí está una función llamada open() que pueden usar para abrir el diálogo".
 
 En TimerChallenge, utilizas esa función open() para mostrar el diálogo cuando el temporizador expire.
 
-Es como si ResultModal tuviera una ventana secreta y useImperativeHandle nos permite decirle a TimerChallenge cómo abrir esa ventana cuando lo necesite.
+Es como si ResultModal tuviera una ventana secreta y useImperativeHandle nos permite decirle a 
+TimerChallenge cómo abrir esa ventana cuando lo necesite.
 
 Explicacion de forma mas profesional
 
-useImperativeHandle
- te permite exponer funciones o métodos específicos de un componente hijo al componente padre, lo cual puede ser útil en situaciones donde necesitas controlar
-  ciertos aspectos del componente hijo desde el componente padre.
+useImperativeHandlete permite exponer funciones o métodos específicos de un componente hijo al componente padre, lo cual puede ser útil en 
+situaciones donde necesitas controlar ciertos aspectos del componente hijo desde el componente padre.
 
-En nuestro caso, tenemos dos componentes: TimerChallenge como el componente padre y ResultModal como el componente hijo. Queremos que ResultModal pueda mostrar 
-su diálogo cuando algo sucede en TimerChallenge, como cuando el temporizador expira.
+En nuestro caso, tenemos dos componentes: TimerChallenge como el componente padre y ResultModal como el componente hijo.
+ Queremos que ResultModal pueda mostrar su diálogo cuando algo sucede en TimerChallenge, como cuando el temporizador expira.
 
-Para lograr esto, primero creamos una referencia al elemento del diálogo dentro de ResultModal usando useRef. Luego, usamos useImperativeHandle para definir qué 
-funciones queremos exponer desde ResultModal hacia fuera. En este caso, definimos una función llamada open() que permite mostrar el diálogo desde fuera del componente.
+Para lograr esto, primero creamos una referencia al elemento del diálogo dentro de ResultModal usando useRef. Luego, usamos useImperativeHandle 
+para definir qué funciones queremos exponer desde ResultModal hacia fuera. En este caso,
+ definimos una función llamada open() que permite mostrar el diálogo desde fuera del componente.
 
 Luego, en TimerChallenge, usamos esta función open() para mostrar el diálogo cuando sea necesario, como cuando el temporizador expira.
 
-Entonces, en resumen, useImperativeHandle nos brinda un mecanismo para establecer una especie de "puente" entre el componente hijo y el componente padre,
- permitiendo que el componente hijo exponga funcionalidades específicas al componente padre para una mejor interacción y control. Es como si el componente hijo 
- tuviera una interfaz secreta que el componente padre puede utilizar para comunicarse con él de manera más precisa y efectiva.
+Entonces, en resumen, useImperativeHandle nos brinda un mecanismo para establecer una especie de "puente" entre el componente hijo y
+ el componente padre, permitiendo que el componente hijo exponga funcionalidades específicas al componente padre para una mejor interacción
+  y control. Es como si el componente hijo tuviera una interfaz secreta que el componente padre puede utilizar para comunicarse con él de 
+  manera más precisa y efectiva.
 
  COMPONENTES: 
 
