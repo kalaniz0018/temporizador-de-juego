@@ -1,3 +1,18 @@
+Cuando estás trabajando con React y necesitas que un componente hijo acceda a un elemento específico 
+dentro de sí mismo, como un diálogo que muestra un resultado, tienes que asegurarte de pasar esa referencia 
+de manera especial. Si solo pasas la referencia normalmente, React no lo manejará de la forma correcta y podría
+ causar errores.
+
+Por eso, cuando tienes un componente hijo que necesita acceder a un elemento interno, como el diálogo en tu caso,
+ React te ofrece algo llamado forwardRef. Esto es como una especie de "paso directo" que permite que la referencia 
+ vaya a través de todos los componentes intermedios directamente al componente final donde se necesita. 
+ Así, el componente hijo puede acceder a ese elemento interno sin problemas.
+
+Entonces, en tu código, ResultModal es ese componente hijo que necesita mostrar un modal cuando el 
+temporizador en TimerChallenge expire. Como ResultModal es un componente de función, para asegurarnos 
+de que pueda acceder correctamente al modal, usamos forwardRef. Esto nos permite pasar la referencia 
+directamente a ResultModal, garantizando que pueda mostrar el modal adecuadamente cuando sea necesario, sin errores.
+----------------------------------------------------------------------------------------------------------------
 El uso de forwardRef en React es necesario cuando necesitas pasar una referencia a un 
 componente hijo a través de un componente de orden superior, como en tu caso, donde ResultModal 
 es el componente hijo y TimerChallenge es el componente padre.
